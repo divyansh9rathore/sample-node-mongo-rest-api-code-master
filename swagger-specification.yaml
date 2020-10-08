@@ -1,0 +1,30 @@
+ /candidate/{candidate_id}/basic-info:
+    parameters:
+      - $ref: "#/parameters/candidate_id"
+      - $ref: "#/parameters/x_request_id"
+      - $ref: "#/parameters/x-request-jwt"
+    get:
+      x-swagger-router-controller: "CandidateBasicInfo"
+      operationId: "getCandidateBasicInfo"
+      security:
+        - jwt: []
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      responses:
+        200:
+          description: "The basic info of a candidate will be returned"
+          schema:
+            $ref: "#/definitions/candidate_basic_info_response_body_def"
+        400:
+          $ref: "#/responses/get_validation_error_model"
+        401:
+          $ref: "#/responses/unauthorize_error_model"
+        404:
+          $ref: "#/responses/resource_not_found"
+        default:
+          $ref: "#/responses/server_error_model"
+      tags:
+        - "Candidate"
+      summary: "Gets the specified Candidate Basic Info"
